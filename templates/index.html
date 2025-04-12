@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .navbar {
+            background-color: #00a65a;
+        }
+        .navbar-brand, .navbar-nav li a {
+            color: white !important;
+        }
+        .navbar-nav li a:hover {
+            color: #00a65a !important;
+            background-color: white;
+        }
+        .card {
+            background-color: #333;
+            border: 1px solid #00a65a;
+            transition: transform 0.2s;
+            height: 100%; /* Ensure all cards have the same height */
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            height: 300px;
+            object-fit: cover; /* Ensure images maintain aspect ratio */
+        }
+        .card-body {
+            padding: 15px;
+            flex: 1; /* Allow card body to grow and fill remaining space */
+        }
+        .card-body p {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px; /* Add spacing between elements */
+        }
+        .card-body h4 {
+            font-size: 18px;
+            margin-bottom: 10px; /* Add spacing between elements */
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .row > div[class^="col-"] {
+            display: flex; /* Ensure columns are flex containers */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">My Book Recommender</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-size: 50px; margin-bottom: 30px;">Top 50 Books</h1>
+            </div>
+
+            <!-- Loop through the books and display them -->
+            {% for i in range(book_name|length) %}
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                        <div class="card-body">
+                            <p>{{ book_name[i] }}</p>
+                            <h4>{{ author[i] }}</h4>
+                            <h4>Votes - {{ votes[i] }}</h4>
+                            <h4>Rating - {{ rating[i] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
